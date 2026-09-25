@@ -1,0 +1,32 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="mb-8">
+    <h1 class="text-4xl font-bold text-black mb-2">
+      Product Catalog
+    </h1>
+    <p class="text-muted text-lg">
+      Browse our selection of premium tech products
+    </p>
+  </div>
+
+  @if (isLoading) {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (i of [0, 1, 2]; track i) {
+        <div class="bg-surface rounded-lg h-48 animate-pulse"></div>
+      }
+    </div>
+  } @else {
+    @if (products.length === 0) {
+      <div class="text-center py-12">
+        <p class="text-muted text-lg">
+          No products available at this time.
+        </p>
+      </div>
+    } @else {
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @for (product of products; track product.slug) {
+          <app-product-card [product]="product"></app-product-card>
+        }
+      </div>
+    }
+  }
+</div>

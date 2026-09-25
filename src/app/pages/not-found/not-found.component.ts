@@ -1,0 +1,11 @@
+import { Component, ViewEncapsulation } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
+@Component({
+  selector: 'app-not-found',
+  standalone: true,
+  imports: [RouterModule],
+  templateUrl: './not-found.component.html',
+  encapsulation: ViewEncapsulation.None,
+})
+export class NotFoundComponent {}
