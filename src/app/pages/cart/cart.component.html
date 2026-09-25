@@ -1,0 +1,59 @@
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <h1 class="text-4xl font-bold text-black mb-8">Your Cart</h1>
+
+  @if ((items$ | async)?.length) {
+    <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+      <table class="w-full text-left">
+        <thead class="bg-surface border-b border-gray-200">
+          <tr>
+            <th class="px-6 py-3 text-sm font-semibold text-gray-500">Product</th>
+            <th class="px-6 py-3 text-sm font-semibold text-gray-500">Unit Price</th>
+            <th class="px-6 py-3 text-sm font-semibold text-gray-500">Quantity</th>
+            <th class="px-6 py-3 text-sm font-semibold text-gray-500">Subtotal</th>
+            <th class="px-6 py-3 text-sm font-semibold text-gray-500"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of items$ | async; track item.product.slug) {
+            <tr class="border-b border-gray-100 last:border-b-0">
+              <td class="px-6 py-4 font-medium text-black">{{ item.product.name }}</td>
+              <td class="px-6 py-4">
+                <app-price-display [price]="item.product.price"></app-price-display>
+              </td>
+              <td class="px-6 py-4 text-gray-700">{{ item.quantity }}</td>
+              <td class="px-6 py-4">
+                <app-price-display [price]="subtotal(item)"></app-price-display>
+              </td>
+              <td class="px-6 py-4 text-right">
+                <button
+                  type="button"
+                  (click)="remove(item.product.slug)"
+                  class="text-red-600 hover:text-red-700 font-medium transition-colors"
+                >
+                  Remove
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      <div class="flex items-center justify-end gap-4 px-6 py-4 bg-surface border-t border-gray-200">
+        <span class="text-gray-600 font-medium">Grand Total</span>
+        <span class="text-xl font-bold text-black">
+          ${{ (grandTotal$ | async)?.toFixed(2) }}
+        </span>
+      </div>
+    </div>
+  } @else {
+    <div class="text-center py-12">
+      <p class="text-muted text-lg mb-6">Your cart is empty.</p>
+      <a
+        routerLink="/"
+        class="inline-block px-6 py-2 bg-primary text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors"
+      >
+        Continue Shopping
+      </a>
+    </div>
+  }
+</div>

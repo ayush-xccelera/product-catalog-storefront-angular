@@ -1,0 +1,14 @@
+<a
+  [routerLink]="['/products', product.slug]"
+  class="block bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg hover:border-primary transition-all cursor-pointer"
+>
+  <div class="p-6">
+    <h3 class="text-lg font-semibold text-black mb-2">
+      {{ product.name }}
+    </h3>
+    <div class="flex items-center justify-between">
+      <app-price-display [price]="product.price"></app-price-display>
+      <app-stock-indicator [inStock]="product.inStock"></app-stock-indicator>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,17 @@
+@if (inStock) {
+  <button
+    type="button"
+    (click)="onClick()"
+    class="px-6 py-2 bg-primary text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+  >
+    Add to Cart
+  </button>
+} @else {
+  <button
+    type="button"
+    disabled
+    class="px-6 py-2 bg-gray-300 text-gray-600 font-semibold rounded-lg cursor-not-allowed"
+  >
+    Sold Out
+  </button>
+}
